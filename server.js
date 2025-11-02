@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import quotesRoutes from "./routes/quotesRoutes.js";
 import { connectDB } from "./db.js";
+import { rootHandler } from "./controllers/rootHandler.js";
 
 dotenv.config();
 
@@ -17,9 +18,7 @@ connectDB();
 app.use("/api", quotesRoutes);
 
 // Root health check
-app.get("/", (req, res) => {
-    res.send("Currency API is running")
-});
+app.get("/", rootHandler );
 
 // Start server
 const PORT = process.env.PORT || 5000;
